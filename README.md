@@ -1,5 +1,6 @@
-# python_adventure
+# python_adventure  [![Build Status](https://travis-ci.org/kittyengineer/python-adventure.svg?branch=master)](https://travis-ci.org/kittyengineer/python-adventure)
 python_adventure v.0.1.0
+
 
 ## What?
 A choose your own adventure game.
