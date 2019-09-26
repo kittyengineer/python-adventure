@@ -4,10 +4,14 @@ from time import *
 from random import *
 # For calls to the operating system
 import os, sys
+# ASCII art assets
+import python_adventure.ascii_assets as assets
 
 
 def main():
-    pass
+    clear_screen()
+    print(assets.title)
+    print(assets.splash)
 
 
 def clear_screen():
