@@ -1,10 +1,13 @@
 import python_adventure.ascii_assets as assets
 
+def _assert_unempty_string(string):
+    assert isinstance(string, str)
+    assert len(string) > 0
+
+
 def test_title_available():
-    assert isinstance(assets.title, str)
-    assert len(assets.title) > 0
+    _assert_unempty_string(assets.TITLE)
 
 
 def test_splash_available():
-    assert isinstance(assets.splash, str)
-    assert len(assets.splash) > 0
+    _assert_unempty_string(assets.SPLASH)
