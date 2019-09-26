@@ -38,3 +38,5 @@ nosetests.xml
 # Temp files
 *.swp
 venv/
+.vscode/
+.eggs/

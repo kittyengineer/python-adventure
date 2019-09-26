@@ -25,9 +25,16 @@ setup(
     description="A choose your own adventure game.",
     long_description=read("README.md"),
 
+    install_requires=[],
+    entry_points = {
+        'console_scripts': ['pyadventure=python_adventure.adventure:main'],
+    },
+
     packages=find_packages(exclude=('tests',)),
 
-    install_requires=[],
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
+
 
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
