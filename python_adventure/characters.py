@@ -6,17 +6,24 @@ HP_MAX = 20
 MP_MIN = 5
 MP_MAX = 20
 
-class Adventurer:
+class Hero:
     '''Basic character class for the pyadventure game'''
     def __init__(self, name, hit_points=randint(HP_MIN, HP_MAX), \
       magic_points=randint(MP_MIN, MP_MAX)):
         self.name = name
         self.hit_points = hit_points
         self.magic_points = magic_points
+        self.weapons = []
+        self.armour = []
+        self.gear = []
         self.move = ''
 
     def __str__(self):
         return f'name={self.name} hp={self.hit_points} ' \
              f'mp={self.magic_points}'
-    
 
+    def add_weapon(self, weapon):
+        self.weapons.append(weapon)
+
+    def add_armour(self, armour):
+        self.armour.append(armour)
