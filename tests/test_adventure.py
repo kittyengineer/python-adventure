@@ -17,3 +17,12 @@ def test_clear_screen_nt_support(mocked_os_system):
     adventure.clear_screen()
     os.system.assert_called_once_with('cls')
 
+def test_get_direction_north(mocker):
+    mocker.patch('builtins.input', side_effect=['n'])
+    assert adventure.get_direction() == 'n'
+
+def test_get_direction_invalid(mocker, capsys):
+    mocker.patch('builtins.input', side_effect=['z', 'n'])
+    adventure.get_direction()
+    captured = capsys.readouterr()
+    assert 'try again' in captured.out

@@ -13,7 +13,10 @@ class Adventurer:
         self.name = name
         self.hit_points = hit_points
         self.magic_points = magic_points
+        self.move = ''
 
     def __str__(self):
         return f'name={self.name} hp={self.hit_points} ' \
              f'mp={self.magic_points}'
+    
+
