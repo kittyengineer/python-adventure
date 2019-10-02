@@ -43,4 +43,3 @@ def test_intro_joke(mocker):
     adventure.intro(hero)
     assert len(hero.weapons) == 0
     assert len(hero.armour) == 0
-
