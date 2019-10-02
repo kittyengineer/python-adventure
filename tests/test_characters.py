@@ -1,7 +1,7 @@
 import python_adventure.characters as chars
 from python_adventure.characters import Hero
 
-def test_init_hero_random_stats():
+def test_hero_init_random_stats():
     hero = Hero(name='Kitty')
     assert hero.name == 'Kitty'
     assert hero.hit_points >= chars.HP_MIN and  \
@@ -9,7 +9,7 @@ def test_init_hero_random_stats():
     assert hero.magic_points >= chars.MP_MIN and \
         hero.magic_points <= chars.MP_MAX
 
-def test_init_hero_fixed_stats():
+def test_hero_init_fixed_stats():
     hero = Hero('Mutt', hit_points=10, magic_points=10)
     assert hero.name == 'Mutt'
     assert hero.hit_points == 10
