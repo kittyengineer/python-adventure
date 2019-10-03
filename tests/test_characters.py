@@ -19,11 +19,25 @@ def test_hero_str():
     hero = Hero('Patch', 15, 15)
     assert str(hero) == 'name=Patch hp=15 mp=15'
 
-def test_hero_move():
-    hero = Hero('Mover')
-    for my_move in ('n', 'e', 'w', 's'):
-        hero.move = my_move
-        assert hero.move == my_move
+def test_hero_north():
+    hero = Hero('Mover', 15, 15, location=[1, 1])
+    hero.north()
+    assert hero.location == [2, 1]
+
+def test_hero_east():
+    hero = Hero('Mover', 15, 15, location=[1, 1])
+    hero.east()
+    assert hero.location == [1, 2]
+
+def test_hero_south():
+    hero = Hero('Mover', 15, 15, location=[1, 1])
+    hero.south()
+    assert hero.location == [0, 1]
+
+def test_hero_west():
+    hero = Hero('Mover', 15, 15, location=[1, 1])
+    hero.west()
+    assert hero.location == [1, 0]
 
 def test_hero_add_weapon():
     hero = Hero('Battler')
