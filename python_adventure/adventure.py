@@ -59,9 +59,9 @@ def lazy_end():
 
 def get_direction(direction_options=None):
     '''Ask player for direction they want to proceed towards'''
-    if direction_options == None:
+    if direction_options is None:
         direction_options = {'n': '(n)orth', 's': '(s)outh',
-            'e': '(e)ast', 'w': '(w)est'}
+                             'e': '(e)ast', 'w': '(w)est'}
     while True:
         direction = input(f'Would you like to go {", ".join(direction_options.values())}> ')
         if direction in direction_options.keys():
