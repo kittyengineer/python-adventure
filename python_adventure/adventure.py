@@ -8,6 +8,7 @@ import sys
 import python_adventure.ascii_assets as assets
 # Hero class
 from python_adventure.characters import Hero
+from python_adventure.world import World
 
 
 def main():
@@ -16,13 +17,51 @@ def main():
     print(assets.TITLE)
     print(assets.SPLASH)
     name = input("What is your name adventurer? ")
+    world = world_init()
     hero = Hero(name)
+    # initial location
     intro(hero)
-    # TODO - game loop needs a world grid
+    hero.location = world.locations[1][1]
+    while True:
+        print(f'hero.location.id() = {hero.location.id()}')
+        hero = move(hero, world)
+        print(f'hero [x, y] = [{hero.location.x_coord}, {hero.location.y_coord}]')
+
+def move(hero, world):
+    previous_x_coord = hero.location.x_coord
+    previous_y_coord = hero.location.y_coord
+    print(f'previous_x = {previous_x_coord}')
+    print(f'previous_y = {previous_y_coord}')
+    next_direction = get_direction()
+    if next_direction == 'n':
+        hero.location.north()
+    elif next_direction == 'e':
+        hero.location.east()
+    elif next_direction == 's':
+        hero.location.south()
+    elif next_direction == 'w':
+        hero.location.west()
+    else:
+        raise ValueError('Invalid direction for hero')
+    print(f'hero.location.id() = {hero.location.id()}')
+    if not world.is_in_bounds(hero.location.x_coord, hero.location.y_coord):
+        print('OUCH !!! You bump up against an invisible barrier.')
+        hero.location.x_coord = previous_x_coord
+        hero.location.y_coord = previous_y_coord
+    return hero
+
 
 def clear_screen():
     '''Simple function that clears the screen. '''
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def world_init():
+    '''Configure the world as a 3x3 grid for now'''
+    cols = 5
+    rows = 5
+    world = World(cols, rows)
+    return world
 
 
 def intro(hero):

@@ -43,3 +43,23 @@ def test_intro_joke(mocker):
     adventure.intro(hero)
     assert len(hero.weapons) == 0
     assert len(hero.armour) == 0
+
+def test_world_init():
+    world = adventure.world_init()
+    world.max_x = 3
+    world.max_y = 3
+    # bottom row
+    for x in range(world.max_x):
+        assert world.locations[x][0].x_coord == x
+        assert world.locations[x][0].y_coord == 0
+        assert world.locations[x][0].id() == f'Location[{x}][0]'
+    # middle row
+    for x in range(world.max_x):
+        assert world.locations[x][0].x_coord == x
+        assert world.locations[x][1].y_coord == 1
+        assert world.locations[x][1].id() == f'Location[{x}][1]'
+    # top row
+    for x in range(world.max_x):
+        assert world.locations[x][0].x_coord == x
+        assert world.locations[x][2].y_coord == 2
+        assert world.locations[x][2].id() == f'Location[{x}][2]'
