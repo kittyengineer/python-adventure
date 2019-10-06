@@ -48,3 +48,7 @@ def test_location_west():
     assert location.x_coord == 0
     assert location.y_coord == 1
 
+def test_location_repr():
+    location = Location(x_coord=1, y_coord=1)
+    print(location)
+    assert repr(location) == 'Location[1][1]'

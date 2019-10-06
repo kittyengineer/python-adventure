@@ -52,14 +52,14 @@ def test_world_init():
     for x in range(world.max_x):
         assert world.locations[x][0].x_coord == x
         assert world.locations[x][0].y_coord == 0
-        assert world.locations[x][0].id() == f'Location[{x}][0]'
+        assert repr(world.locations[x][0]) == f'Location[{x}][0]'
     # middle row
     for x in range(world.max_x):
         assert world.locations[x][0].x_coord == x
         assert world.locations[x][1].y_coord == 1
-        assert world.locations[x][1].id() == f'Location[{x}][1]'
+        assert repr(world.locations[x][1]) == f'Location[{x}][1]'
     # top row
     for x in range(world.max_x):
         assert world.locations[x][0].x_coord == x
         assert world.locations[x][2].y_coord == 2
-        assert world.locations[x][2].id() == f'Location[{x}][2]'
+        assert repr(world.locations[x][2]) == f'Location[{x}][2]'

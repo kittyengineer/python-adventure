@@ -30,7 +30,7 @@ class Location:
         self.creature = creature
         self.items = items
 
-    def id(self):
+    def __repr__(self):
         return f'Location[{self.x_coord}][{self.y_coord}]'
 
     def north(self):
