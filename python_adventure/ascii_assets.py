@@ -1,3 +1,4 @@
+'''A module for capturing the ASCII art assets'''
 
 TITLE = r'''
  ____        _   _

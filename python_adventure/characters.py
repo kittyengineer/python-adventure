@@ -1,3 +1,6 @@
+'''A module that hosts the main Hero class
+Note - Consider if this should go into the world.py module instead
+'''
 # The random module provides methods for randomizing game results (e.g. character damage)
 from random import randint
 from python_adventure.world import Location
@@ -24,7 +27,11 @@ class Hero:
              f'mp={self.magic_points}'
 
     def add_weapon(self, weapon):
+        '''Add a weapon to the hero's inventory. Currently only one weapon
+        supported and it has no attributes. Consider a better design in future
+        iterations.'''
         self.weapons.append(weapon)
 
     def add_armour(self, armour):
+        '''Add armour to the hero's inventory. Similar shortcomings to weapon'''
         self.armour.append(armour)
