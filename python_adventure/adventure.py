@@ -1,6 +1,6 @@
-# The time module allows us to pause and stop the game
+'''This module is the main program for the game'''
+
 import time
-# For calls to the operating system
 import os
 import sys
 
@@ -8,6 +8,7 @@ import sys
 import python_adventure.ascii_assets as assets
 # Hero class
 from python_adventure.characters import Hero
+# World and Location class
 from python_adventure.world import World
 
 
@@ -16,18 +17,28 @@ def main():
     clear_screen()
     print(assets.TITLE)
     print(assets.SPLASH)
-    name = input("What is your name adventurer? ")
     world = world_init()
-    hero = Hero(name)
-    # initial location
+    hero = hero_init(location=world.locations[1][1])
     intro(hero)
-    hero.location = world.locations[1][1]
+    game_loop(world, hero)
+
+
+def game_loop(world=None, hero=None):
+    '''Infinite loop for the main game'''
     while True:
-        print(f'hero.location.id() = {hero.location.id()}')
+        print(f'hero.location = {repr(hero.location)}')
         hero = move(hero, world)
         print(f'hero [x, y] = [{hero.location.x_coord}, {hero.location.y_coord}]')
 
+
+def hero_init(location=None):
+    '''Generate a hero for the player'''
+    name = input("What is your name adventurer? ")
+    return Hero(name, location=location)
+
+
 def move(hero, world):
+    '''Manage inputs for moving around the world grid'''
     previous_x_coord = hero.location.x_coord
     previous_y_coord = hero.location.y_coord
     print(f'previous_x = {previous_x_coord}')
@@ -43,7 +54,7 @@ def move(hero, world):
         hero.location.west()
     else:
         raise ValueError('Invalid direction for hero')
-    print(f'hero.location.id() = {hero.location.id()}')
+    print(f'hero.location = {repr(hero.location)}')
     if not world.is_in_bounds(hero.location.x_coord, hero.location.y_coord):
         print('OUCH !!! You bump up against an invisible barrier.')
         hero.location.x_coord = previous_x_coord
@@ -57,7 +68,7 @@ def clear_screen():
 
 
 def world_init():
-    '''Configure the world as a 3x3 grid for now'''
+    '''Configure the world as a 5x5 grid for now'''
     cols = 5
     rows = 5
     world = World(cols, rows)
@@ -90,6 +101,7 @@ def intro(hero):
 
 
 def lazy_end():
+    '''A quick ending that occurs before the main game loop'''
     print("You stay at home, sat in your favourite chair watching the fire grow" \
           " colder. The land of Meowland no longer has a hero.")
     print("Game Over")

@@ -1,5 +1,6 @@
 import python_adventure.adventure as adventure
 import python_adventure.characters as chars
+from python_adventure.world import Location
 import pytest
 from unittest.mock import patch
 import os
@@ -21,6 +22,11 @@ def test_clear_screen_nt_support(mocked_os_system):
 def test_get_direction_north(mocker):
     mocker.patch('builtins.input', side_effect=['n'])
     assert adventure.get_direction() == 'n'
+
+def test_hero_init(mocker):
+    mocker.patch('builtins.input', side_effect=['Conan'])
+    hero = adventure.hero_init(Location())
+    assert hero.name == 'Conan'
 
 def test_get_direction_invalid(mocker, capsys):
     mocker.patch('builtins.input', side_effect=['z', 'n'])
@@ -47,7 +53,7 @@ def test_intro_joke(mocker):
 def test_world_init():
     world = adventure.world_init()
     world.max_x = 3
-    world.max_y = 3
+    world.max_y = 2
     # bottom row
     for x in range(world.max_x):
         assert world.locations[x][0].x_coord == x
