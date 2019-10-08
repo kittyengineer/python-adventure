@@ -16,7 +16,6 @@ class World:
         if x_coord in range(self.max_x) and y_coord in range(self.max_y):
             return True
         return False
-    
 # TODO
 # OK - Location.description can remain a string
 # Location.creature requires a new class
