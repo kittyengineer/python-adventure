@@ -11,6 +11,9 @@ from python_adventure.characters import Hero
 # World and Location class
 from python_adventure.world import World
 
+DEFAULT_X = 1
+DEFAULT_Y = 1
+PAUSE_TIME = 0
 
 def main():
     """Here's where the game begins."""
@@ -18,7 +21,7 @@ def main():
     print(assets.TITLE)
     print(assets.SPLASH)
     world = world_init()
-    hero = hero_init(location=world.locations[1][1])
+    hero = hero_init(location=world.locations[DEFAULT_X][DEFAULT_Y])
     intro(hero)
     game_loop(world, hero)
 
@@ -29,6 +32,7 @@ def game_loop(world=None, hero=None):
         print(f'hero.location = {repr(hero.location)}')
         hero = move(hero, world)
         print(f'hero [x, y] = [{hero.location.x_coord}, {hero.location.y_coord}]')
+        print(hero.location.description)
 
 
 def hero_init(location=None):
@@ -59,6 +63,7 @@ def move(hero, world):
         print('OUCH !!! You bump up against an invisible barrier.')
         hero.location.x_coord = previous_x_coord
         hero.location.y_coord = previous_y_coord
+    hero.location = world.locations[hero.location.x_coord][hero.location.y_coord]
     return hero
 
 
@@ -72,13 +77,19 @@ def world_init():
     cols = 5
     rows = 5
     world = World(cols, rows)
+
+    # grid row 2
+    world.locations[1][2].description = """
+    You move to the north, walking in the sunshine.
+    A villager is in your path and greets you"""
+
     return world
 
 
 def intro(hero):
     '''Initial introduction to the adventure setting initial hero stats'''
     print(f'Welcome to Meowland, {hero.name}', end='\n\n')
-    time.sleep(2)
+    time.sleep(PAUSE_TIME)
     print(f'Your health is {hero.hit_points}')
     print(f'Your magic skill is {hero.magic_points}', end='\n\n')
     answer = input("Would you like to venture out into the land? Press y to continue > ")
