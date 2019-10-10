@@ -83,6 +83,18 @@ def world_init():
     You move to the north, walking in the sunshine.
     A villager is in your path and greets you"""
 
+    # grid row 1
+    world.locations[0][1].description = """
+    You walk to the field of wild flowers, stopping to take in the beauty
+    A villager is in your path and greets you"""
+    world.locations[1][1].description = """
+    Start location"""
+    world.locations[2][1].description = """
+    You walk to the river which lies to the east of your home.
+    "A villager is in your path and greets you"""
+
+    # grid row 0
+
     return world
 
 
